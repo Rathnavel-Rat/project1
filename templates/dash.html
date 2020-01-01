@@ -1,0 +1,81 @@
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="enter the pk value" title="Type in a name">
+<table border="14" id="myTable">
+
+<tr>
+	<th>Pk</th>
+	<th>created/updated</th>
+	<th>old_value</th>
+	<th>new_value</th>
+	<th>file_updated</th>
+	<th>time</th>
+</tr>
+</tr>
+
+    {% for item in log %}
+    <tr> 
+        <td>{{ item.fk.pk }}</td>
+        <td>{{ item.created_update }}</td>
+        <td>{{ item.old_value }}</td>
+        <td>{{ item.new_value }}</td>
+        <td>{{ item.file_updated }}</td>
+        <td>{{ item.time }}</td>
+
+    </tr>
+    {% endfor %}
+   </table>
+
+ <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 5px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

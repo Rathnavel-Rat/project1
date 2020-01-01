@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+Click this to edit externally
+<a  href=edit >edit </a>        <a href=dash>Dashboard</a>
+<hr>
+<form method="POST" enctype=multipart/form-data >{%csrf_token%}
+PK:<input type="TextField" id="primary_key">                                 
+{{a.as_p}}
+
+<input type="submit" name="create">
+
+</form>
+
+<button onclick="add()">update</button>
+<br>
+NOTE:
+1:select the file and enter the value to create NEW ENTRY
+<br>
+2.TO update the file enter the pk(primary_key value) and new value
+<br>
+===>pk is the primary_key and its a number  enter 1 for example
+<br>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+
+var sss=new Array();
+
+	function add()
+	{
+
+		var token = '{{csrf_token}}';
+		var a=document.getElementById('primary_key').value;
+		var b=document.getElementById('id_Value').value;
+		var output=document.getElementById('output');
+		
+		console.log(a,b)
+		$.ajax(
+		{
+		headers: { "X-CSRFToken": token },
+        type:'POST',
+        url: "{% url "update" %}",
+        data:{'a': a,"b":b},
+        success: function(result) {
+            window.location.href ="{% url "one"%}";
+            alert("updated the value to file")
+
+        }
+
+		});
+
+
+	}
+</script>
+</script>
+<br>
+
+
+</body>
+
+</html>

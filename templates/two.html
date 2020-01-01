@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form method="POST">
+	{%csrf_token%}
+pk:<input type="text" name="pk">
+<input type="hidden" value={{hid}} name="hidden">
+<input type="submit" name="edit" value="edit">
+
+<br>
+<textarea name="input"  rows="28" cols="50">{{o}}</textarea>
+<input type="submit" name="done" value="Done">
+</form>
+<BR>
+NOTE:<BR>
+
+1.enter the primary to find the file<BR> 
+2.click edit<BR>
+3. edit the content in the text area<BR>
+4.click done<BR>
+</body>
+</html>
